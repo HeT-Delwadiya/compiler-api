@@ -18,7 +18,7 @@ var data = {
   lang: 'language',
   code: 'code',
   input: 'stdin input'
-}
+} 
 
 compiler.compilerApi(data, (result) => {
   console.log(result);
