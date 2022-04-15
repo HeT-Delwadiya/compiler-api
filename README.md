@@ -1,5 +1,5 @@
 # compiler-api
- An api to compile your code which supports multiple programming languages using G4G's api.
+ An api to compile your code which supports multiple programming languages using G4G's api. Available on [NPMJS](https://www.npmjs.com/package/compiler-api).
 
 ## Installation
 Install using npm:
