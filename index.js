@@ -4,37 +4,34 @@ exports.compilerApi = (data, callback) => {
        
        var options = {
               'method': 'POST',
-              'url': 'https://ide.geeksforgeeks.org/main.php',
+              'url': 'https://codejudge.geeksforgeeks.org/submit-request',
               'headers': {
-                     'Accept': 'application/json',
-                     'Content-Type': 'application/x-www-form-urlencoded'
+                     'Accept': '*/*',
+                     'Content-Type': 'application/json; charset=utf-8',
               },
-              form: {
-                     'lang': data.lang,
+              'body': JSON.stringify({
+                     'language': data.lang,
                      'code': data.code,
                      'input': data.input,
                      'save': 'false'
-              }
+              })
        };
        request(options, function (error, response) {
               if (error) throw new Error(error); 
                      const d = JSON.parse(response.body)
-                     if(d.status=="SUCCESS") {
-                            fetchResult(d.sid);
+                     if(d.status=="success") {
+                            fetchResult(d.id);
+                     } else {
+                            callback(d);
                      }
        });
 
-       const fetchResult = (sid) => {
+       const fetchResult = (id) => {
               var options = {
-                     'method': 'POST',
-                     'url': 'https://ide.geeksforgeeks.org/submissionResult.php',
+                     'method': 'GET',
+                     'url': `https://codejudge.geeksforgeeks.org/get-status/${id}`,
                      'headers': {
-                            'Accept': 'application/json',
-                            'Content-Type': 'application/x-www-form-urlencoded'
-                     },
-                     form: {
-                            'requestType': 'fetchResults',
-                            'sid': sid
+                            'Accept': '*/*',
                      }
               };
               request(options, function (error, response) {
@@ -42,8 +39,8 @@ exports.compilerApi = (data, callback) => {
                             const r = JSON.parse(response.body)
                             if (r.status=="SUCCESS") {
                                    callback(r)
-                            } else if (r.status=="IN-QUEUE") {
-                                   fetchResult(sid)
+                            } else if (r.status=="in-queue") {
+                                   fetchResult(id)
                             }
               });
        }

@@ -1,5 +1,5 @@
 # compiler-api
- A node package to compile your code which supports multiple programming languages using G4G's api. Available on [NPMJS](https://www.npmjs.com/package/compiler-api) also.
+ An api to compile your code which supports multiple programming languages using G4G's api.
 
 ## Installation
 Install using npm:
@@ -18,7 +18,7 @@ var data = {
   lang: 'language',
   code: 'code',
   input: 'stdin input'
-} 
+}
 
 compiler.compilerApi(data, (result) => {
   console.log(result);
@@ -54,39 +54,74 @@ compiler.compilerApi(data, (result) => {
 Response
 ```javascript
 {
-   "valid":"1",
-   "output":"hello\n",
-   "time":"0.02",
-   "compResult":"S",
-   "memory":"0.125",
-   "hash":"7fb0b8e425e3957ebf11a1f25ad71c31_Tester_U16",
-   "status":"SUCCESS"
+  id: 'f178db80-702c-4e54-9343-904ba700b52d',
+  submission_id: 'f178db80-702c-4e54-9343-904ba700b52d',
+  language: 'python3',
+  status: 'SUCCESS',
+  compResult: 'S',
+  time: '0.014',
+  memory: '7.05859375',
+  output: 'hi\n',
+  rntError: '',
+  errorCode: '',
+  save: 'false',
+  code: 'print("hi")',
+  input: '',
+  timestamp: '2022-11-06 16:45:41'
 }
 ```
 
 Response when there is compile time error in code
 ```javascript
 {
-   "valid":"1",
-   "time":"0",
-   "compResult":"F", //compileResult is F (Fail)
-   "cmpError":"\nprog.java:1: error: class, interface, or enum expected\nprint(\"hello\")\n^\n1 error", //compile time error in detail
-   "hash":"aaca8ef7202655f51baedeed8542215e_Tester_U16",
-   "status":"SUCCESS"
+  id: 'bea36a74-f6d6-43f6-910c-576472693e1d',
+  submission_id: 'bea36a74-f6d6-43f6-910c-576472693e1d',
+  status: 'success'
+}
+{
+  status: 'SUCCESS',
+  id: 'bea36a74-f6d6-43f6-910c-576472693e1d',
+  submission_id: 'bea36a74-f6d6-43f6-910c-576472693e1d',
+  language: 'java',
+  compResult: 'F', //compile result is F (Fail)
+  errorCode: 'CE',
+  cmpError: './GFG.java:1: error: class, interface, or enum expected\n' +
+    'print("hi")\n' +
+    '^\n' +
+    '1 error\n',
+  save: 'false',
+  code: 'print("hi")',
+  input: '',
+  timestamp: '2022-11-06 16:49:14'
 }
 ```
 
 Response when there is run time error in code
 ```javascript
 {
-   "valid":"1",
-   "time":"0",
-   "compResult":"S",
-   "memory":"0.125",
-   "hash":"65bb79500056c00244df5b1a0b81399e_Tester_U16",
-   "rntError":"Traceback(most recent call last):\n File \"\/home\/65bb79500056c00244df5b1a0b81399e.py\", line 2, in <module>\n print(y)\nNameError: name 'y' is not defined\n", //run time error in detail
-   "status":"SUCCESS"
+  id: '27bab3e6-d092-4339-b1b3-2429f07b1ce1',
+  submission_id: '27bab3e6-d092-4339-b1b3-2429f07b1ce1',
+  language: 'python3',
+  status: 'SUCCESS',
+  compResult: 'S',
+  time: '0.017',
+  memory: '7.32421875',
+  output: '',
+  rntError: 'Traceback (most recent call last):\n' + //run time error details
+    '  File "27bab3e6-d092-4339-b1b3-2429f07b1ce1.py", line 1, in <module>\n' +
+    '    prints("hi")\n' +
+    "NameError: name 'prints' is not defined\n" +
+    ' ',
+  errorCode: 'RTE',
+  save: 'false',
+  code: 'prints("hi")',
+  input: '',
+  timestamp: '2022-11-06 16:47:30'
 }
+```
+Response when lang param is not valid
+```javascript
+{ message: 'Invalid language' }
 ```
 
 ## About Me
