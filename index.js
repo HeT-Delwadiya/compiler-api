@@ -1,48 +1,48 @@
-const request = require('request');
+import fetch from 'node-fetch';
 
-exports.compilerApi = (data, callback) => {
-       
-       var options = {
+const fetchResult = async (id) => {
+       const options = {
+              'method': 'GET',
+              'headers': {
+                     'Accept': '*/*',
+              }
+       }
+
+       try {
+              const fetchResultAPIRes = await fetch(`https://codejudge.geeksforgeeks.org/get-status/${id}`, options);
+              const fetchResultAPIOutput = await fetchResultAPIRes.json();
+
+              if (fetchResultAPIOutput.status=="SUCCESS") {
+                     return fetchResultAPIOutput
+              } else if (fetchResultAPIOutput.status=="in-queue") {
+                     await fetchResult(id)
+              } 
+       } catch (error) {
+              throw new Error(error);
+       } 
+}
+
+exports.compilerApi = async (data, callback) => {
+
+       const options = {
               'method': 'POST',
-              'url': 'https://codejudge.geeksforgeeks.org/submit-request',
               'headers': {
                      'Accept': '*/*',
                      'Content-Type': 'application/json; charset=utf-8',
               },
               'body': JSON.stringify({
-                     'language': data.lang,
-                     'code': data.code,
-                     'input': data.input,
-                     'save': 'false'
+                     "language": data.language,
+                     "code": data.code,
+                     "input": data.input,
+                     "save": false
               })
-       };
-       request(options, function (error, response) {
-              if (error) throw new Error(error); 
-                     const d = JSON.parse(response.body)
-                     if(d.status=="success") {
-                            fetchResult(d.id);
-                     } else {
-                            callback(d);
-                     }
-       });
+       }
 
-       const fetchResult = (id) => {
-              var options = {
-                     'method': 'GET',
-                     'url': `https://codejudge.geeksforgeeks.org/get-status/${id}`,
-                     'headers': {
-                            'Accept': '*/*',
-                     }
-              };
-              request(options, function (error, response) {
-                     if (error) throw new Error(error);
-                            const r = JSON.parse(response.body)
-                            if (r.status=="SUCCESS") {
-                                   callback(r)
-                            } else if (r.status=="in-queue") {
-                                   fetchResult(id)
-                            }
-              });
+       try {
+              const compileCodeAPIRes = await fetch('https://codejudge.geeksforgeeks.org/submit-request', options);
+              const compileCodeAPIOutput = await compileCodeAPIRes.json();
+              callback(await fetchResult(compileCodeAPIOutput.id));
+       } catch (error) {
+              throw new Error(error);
        }
 }
-
