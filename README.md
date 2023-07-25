@@ -126,4 +126,4 @@ Response when lang param is not valid
 
 ## About Me
 
-<a href="https://www.linkedin.com/in/het-delwadiya/" target="_blank">Het Delwadiya</a>
+<a href="https://hetdelwadiya.dev" target="_blank">Het Delwadiya</a>
