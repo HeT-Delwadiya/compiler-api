@@ -3,7 +3,6 @@
        "version": "1.2.0",
        "description": "An api to compile your code which supports multiple programming languages using G4G's api.",
        "main": "index.js",
-       "type": "module",
        "scripts": {
               "test": "echo \"Error: no test specified\" && exit 1"
        },
@@ -21,7 +20,7 @@
        "author": "HeT",
        "license": "MIT",
        "dependencies": {
-              "node-fetch": "^3.3.2",
+              "node-fetch": "^2.6.6",
               "request": "^2.88.2"
        }
 }
