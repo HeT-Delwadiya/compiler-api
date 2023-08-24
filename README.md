@@ -20,9 +20,7 @@ var data = {
   input: 'stdin input'
 }
 
-compiler.compilerApi(data, (result) => {
-  console.log(result);
-});
+const result = await compiler.compilerApi(data);
 ```
 Pass the 'data' object as a parameter to this function. Define keys lang, code and input. If your code don't have any input then put an empty string. Refer below available programming languages for lang keywords.
 
@@ -46,9 +44,7 @@ var data = {
   input: ''
 }
 
-compiler.compilerApi(data, (result) => {
-  console.log(result);
-});
+const result = await compiler.compilerApi(data);
 ```
 
 Response
