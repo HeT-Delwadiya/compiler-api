@@ -1,26 +1,26 @@
 {
-       "name": "compiler-api",
-       "version": "1.2.1",
-       "description": "An api to compile your code which supports multiple programming languages using G4G's api.",
-       "main": "index.js",
-       "scripts": {
-              "test": "echo \"Error: no test specified\" && exit 1"
-       },
-       "repository": {
-              "type": "git",
-              "url": "git+https://github.com/HeT-Delwadiya/compiler-api.git"
-       },
-       "keywords": [
-              "compiler",
-              "compiler api",
-              "api",
-              "node compiler",
-              "multi language compiler"
-       ],
-       "author": "HeT",
-       "license": "MIT",
-       "dependencies": {
-              "node-fetch": "^2.6.6",
-              "request": "^2.88.2"
-       }
+	"name": "compiler-api",
+	"version": "1.2.2",
+	"description": "An api to compile your code which supports multiple programming languages using G4G's api.",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/HeT-Delwadiya/compiler-api.git"
+	},
+	"keywords": [
+		"compiler",
+		"compiler api",
+		"api",
+		"node compiler",
+		"multi language compiler"
+	],
+	"author": "HeT",
+	"license": "MIT",
+	"dependencies": {
+		"node-fetch": "^2.6.6",
+		"request": "^2.88.2"
+	}
 }
