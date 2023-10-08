@@ -40,8 +40,13 @@ const compilerApi = async (data) => {
 	try {
 		const compileCodeAPIRes = await fetch('https://codejudge.geeksforgeeks.org/submit-request', options);
 		const compileCodeAPIOutput = await compileCodeAPIRes.json();
+		if (!compileCodeAPIOutput.id) {
+			return new Error("Invalid request data!");
+		}
+
 		const data = await fetchResult(compileCodeAPIOutput.id);
 		return data;
+
 	} catch (error) {
 		throw new Error(error);
 	}

@@ -15,7 +15,7 @@ const compiler = require('compiler-api');
 ```javascript
 //specify programming language, code and input if any else put empty string
 var data = {
-  lang: 'language',
+  language: 'language',
   code: 'code',
   input: 'stdin input'
 }
@@ -39,7 +39,7 @@ Pass the 'data' object as a parameter to this function. Define keys lang, code a
 ### Example Code Snippet
 ```javascript
 var data = {
-  lang: 'python3',
+  language: 'python3',
   code: 'print(\"Hello\")',
   input: ''
 }

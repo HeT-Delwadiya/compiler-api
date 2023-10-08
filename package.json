@@ -1,6 +1,6 @@
 {
 	"name": "compiler-api",
-	"version": "1.2.2",
+	"version": "1.2.3",
 	"description": "An api to compile your code which supports multiple programming languages using G4G's api.",
 	"main": "index.js",
 	"scripts": {
